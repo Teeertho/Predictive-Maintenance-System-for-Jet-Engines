@@ -85,7 +85,7 @@ model = XGBRegressor(
     colsample_bytree=0.7,
     n_jobs=-1,                  # Use all M4 cores
     random_state=42,
-    early_stopping_rounds=100    # STOP if no improvement for 50 rounds
+    early_stopping_rounds=100    # STOP if no improvement for 100 rounds
 )
 
 # 3. Fit with Watchdog
