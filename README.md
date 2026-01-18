@@ -26,6 +26,9 @@ Both training scripts (`train_xgboost.py` and `train.py`) generate the submissio
     python train.py
     python train_xgboost.py
     ```
+
+(This might take upto 1-20 minutes depending on your machine to train the model and form the .pkl file)
+
 2.  **Launch Dashboard:**
     ```bash
     streamlit run app_xgb.py
@@ -35,6 +38,7 @@ If you on only want to run the **Random Forest** then just
    python train.py
    streamlit run app.py
     
+
 ## 📂 Project Structure
 * `train_xgboost.py`: XGBoost Training Pipeline (Generates `xgb_model.pkl`).
 * `app_xgb.py`: Dashboard using the XGBoost model.
