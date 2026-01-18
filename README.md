@@ -37,8 +37,14 @@ If you on only want to run the **Random Forest** then just
    ```bash
    python train.py
    streamlit run app.py
+   ```
+You can also calculate the RMSE by running
+  ```bash
+  python RMSE_calc.py
+  ```
+This calculates the RMSE using the final_predictions_RMSE.txt (the results using models) and the real_result.txt (RUL_FD001.txt from NASA, aka the actual results)
+  
     
-
 ## 📂 Project Structure
 * `train_xgboost.py`: XGBoost Training Pipeline (Generates `xgb_model.pkl`).
 * `app_xgb.py`: Dashboard using the XGBoost model.
