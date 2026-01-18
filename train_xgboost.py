@@ -77,14 +77,26 @@ print("4. Training XGBoost Regressor...")
 # learning_rate=0.01: Slow and steady learning (High Precision).
 # max_depth=4: Keeps trees simple to avoid memorizing noise.
 model = XGBRegressor(
-    n_estimators=500,
+    n_estimators=3000,
     learning_rate=0.01,
     max_depth=4,
     subsample=0.7,
     colsample_bytree=0.7,
     n_jobs=-1,
-    random_state=42
+    random_state=42,
+    early_stopping_rounds=100
 )
+
+print("   -> Training with Early Stopping...")
+# We must pass the validation set so it knows when to stop
+model.fit(
+    X_train, y_train, 
+    eval_set=[(X_val, y_val)], 
+    verbose=False
+)
+
+print(f"   -> Stopped at {model.best_iteration} trees!")
+
 
 model.fit(train_data[features], train_data['RUL'])
 
