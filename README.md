@@ -1,6 +1,6 @@
 # ✈️ NASA Jet Engine RUL Predictor (XGBoost & Random Forest)
 
-This project predicts the **Remaining Useful Life (RUL)** of turbofan jet engines using the NASA C-MAPSS dataset. It achieves an RMSE of **22.94** using a physics-guided XGBoost approach focused on just two critical sensors: **T50** (LPT Outlet Temp) and **Ps30** (HPC Outlet Pressure).
+This project predicts the **Remaining Useful Life (RUL)** of turbofan jet engines using the NASA C-MAPSS dataset. It achieves an RMSE of **22.86** using a physics-guided XGBoost approach focused on just two critical sensors: **T50** (LPT Outlet Temp) and **Ps30** (HPC Outlet Pressure).
 
 The project also includes a **Random Forest** implementation for comparison (RMSE 23.78), allowing users to benchmark the "Boosting" vs "Bagging" strategies directly.
 
@@ -8,7 +8,7 @@ The project also includes a **Random Forest** implementation for comparison (RMS
 * **Physics-Aware:** Tracks specific degradation signatures in Temperature and Pressure.
 * **Velocity Detection:** Uses sensor *slope* (rate of change) to detect the specific moment degradation begins (The "Knee" point).
 * **Dual Models:**
-    * **XGBoost (Main):** Uses Gradient Boosting for superior accuracy (**RMSE 22.94**).
+    * **XGBoost (Main):** Uses Gradient Boosting for superior accuracy (**RMSE 22.86**).
     * **Random Forest (Baseline):** Uses Bagging for robust stability (**RMSE 23.78**).
 * **Interactive Dashboard:** Streamlit app for real-time engine diagnostics.
 
