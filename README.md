@@ -30,7 +30,11 @@ Both training scripts (`train_xgboost.py` and `train.py`) generate the submissio
     ```bash
     streamlit run app_xgb.py
     ```
-
+If you on only want to run the **Random Forest** then just
+   ```bash
+   python train.py
+   streamlit run app.py
+    
 ## 📂 Project Structure
 * `train_xgboost.py`: XGBoost Training Pipeline (Generates `xgb_model.pkl`).
 * `app_xgb.py`: Dashboard using the XGBoost model.
