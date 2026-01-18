@@ -13,10 +13,7 @@ The project also includes a **Random Forest** implementation for comparison (RMS
 * **Interactive Dashboard:** Streamlit app for real-time engine diagnostics.
 
 ## ⚠️ Important Note on Results
-Both training scripts (`train_xgboost.py` and `train.py`) generate the submission file named **`final_predictions_RMSE.txt`**.
-* Running **XGBoost** overwrites this file with XGBoost predictions.
-* Running **Random Forest** overwrites this file with Random Forest predictions.
-* **Always check which script you ran last before using the results file.**
+* Running **train.py** and then **train_xgboost.py**  generate the submission file named **`final_predictions_RMSE.txt`**.
 
 ## 🚀 How to Run
 
@@ -38,11 +35,11 @@ If you on only want to run the **Random Forest** then just
    python train.py
    streamlit run app.py
    ```
-You can also calculate the RMSE by running
+You can also calculate the RMSE by running (only calculates the XGBoost's RMSE)
   ```bash
   python RMSE_calc.py
   ```
-This calculates the RMSE using the final_predictions_RMSE.txt (the results using models) and the real_result.txt (RUL_FD001.txt from NASA, aka the actual results)
+This calculates the RMSE using the final_predictions_RMSE.txt (the results using our models) and the real_result.txt (RUL_FD001.txt from NASA, aka the actual results)
   
     
 ## 📂 Project Structure
