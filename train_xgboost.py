@@ -78,14 +78,14 @@ X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_st
 
 # 2. Configure Model
 model = XGBRegressor(
-    n_estimators=2000,          # High ceiling (M4 handles this easily)
+    n_estimators=3000,          # High ceiling (M4 handles this easily)
     learning_rate=0.01,         # Slow & Precise learning
     max_depth=4,                # Shallow trees to prevent overfitting
     subsample=0.7,
     colsample_bytree=0.7,
     n_jobs=-1,                  # Use all M4 cores
     random_state=42,
-    early_stopping_rounds=50    # STOP if no improvement for 50 rounds
+    early_stopping_rounds=100    # STOP if no improvement for 50 rounds
 )
 
 # 3. Fit with Watchdog
