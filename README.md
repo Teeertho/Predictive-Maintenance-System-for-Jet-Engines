@@ -24,20 +24,11 @@ Both training scripts (`train_xgboost.py` and `train.py`) generate the submissio
 1.  **Train the Model:**
     ```bash
     python train_xgboost.py
-    ```
-2.  **Launch Dashboard:**
-    ```bash
-    streamlit run app_xgb.py
-    ```
-
-### Option B: Run Random Forest (Comparison)
-1.  **Train the Model:**
-    ```bash
     python train.py
     ```
 2.  **Launch Dashboard:**
     ```bash
-    streamlit run app.py
+    streamlit run app_xgb.py
     ```
 
 ## 📂 Project Structure
