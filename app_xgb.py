@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import joblib
 import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 
 # --- 1. CONFIGURATION ---
 st.set_page_config(page_title="AI Based RUL Calc", layout="wide")
@@ -41,6 +43,7 @@ st.sidebar.caption(f"Cap: {TRAINED_CAP} Cycles")
 
 # --- 4. PROCESSING ---
 engine_df = df[df['unit'] == unit_id].copy()
+original_df = engine_df.copy() # KEEP RAW DATA FOR PLOTTING LATER
 
 # A. Scale Data
 engine_df[good_sensors] = scaler.transform(engine_df[good_sensors])
@@ -114,7 +117,7 @@ with col4:
     </div>
     """, unsafe_allow_html=True)
 
-# --- 7. GRAPH ---
+# --- 7. GRAPH 1: RUL TRAJECTORY ---
 st.markdown("---")
 st.subheader("📉 RUL Trajectory Comparison")
 
@@ -126,3 +129,54 @@ clean_df['XGBoost Prediction'] = model.predict(clean_df[feature_cols])
 chart_data = clean_df.set_index('time')[['Standard Calculation', 'XGBoost Prediction']]
 st.line_chart(chart_data, color=["#FF0000", "#0000FF"])
 st.caption("Red = Standard (Manual) | Blue = XGBoost (Gradient Boosting)")
+
+# --- 8. GRAPH 2: SEPARATED SENSORS ---
+st.markdown("---")
+st.subheader("👁️ Sensor Analysis (The 'Why')")
+st.caption("Visualizing the raw thermodynamic data that drove the AI's decision.")
+
+# Create Two Vertical Subplots
+fig_sensors = make_subplots(
+    rows=2, cols=1, 
+    shared_xaxes=True, 
+    vertical_spacing=0.1,
+    subplot_titles=("Temperature (T50) - Increasing Trend", "Pressure (Ps30) - Decreasing Trend")
+)
+
+# Plot 1: Temperature (Red)
+fig_sensors.add_trace(
+    go.Scatter(
+        x=original_df['time'], 
+        y=original_df['s4'], 
+        name="Temp (T50)", 
+        line=dict(color='#d62728', width=2)
+    ),
+    row=1, col=1
+)
+
+# Plot 2: Pressure (Blue)
+fig_sensors.add_trace(
+    go.Scatter(
+        x=original_df['time'], 
+        y=original_df['s11'], 
+        name="Pressure (Ps30)", 
+        line=dict(color='#1f77b4', width=2)
+    ),
+    row=2, col=1
+)
+
+# Formatting
+fig_sensors.update_layout(
+    height=600,  # Taller layout for two graphs
+    hovermode="x unified",
+    template="plotly_white",
+    margin=dict(l=20, r=20, t=40, b=20),
+    showlegend=False # Hide legend since titles explain it
+)
+
+# Axis Labels
+fig_sensors.update_yaxes(title_text="Temp (°R)", row=1, col=1)
+fig_sensors.update_yaxes(title_text="Pressure (psia)", row=2, col=1)
+fig_sensors.update_xaxes(title_text="Cycles", row=2, col=1)
+
+st.plotly_chart(fig_sensors, use_container_width=True)
