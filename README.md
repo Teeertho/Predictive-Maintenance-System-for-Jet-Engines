@@ -23,8 +23,8 @@ Both training scripts (`train_xgboost.py` and `train.py`) generate the submissio
 ### Option A: Run XGBoost (Recommended)
 1.  **Train the Model:**
     ```bash
-    python train_xgboost.py
     python train.py
+    python train_xgboost.py
     ```
 2.  **Launch Dashboard:**
     ```bash
