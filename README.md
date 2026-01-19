@@ -2,7 +2,7 @@
 
 This project predicts the **Remaining Useful Life (RUL)** of turbofan jet engines using the NASA C-MAPSS dataset. It achieves an RMSE of **22.86** using a physics-guided XGBoost approach focused on just two critical sensors: **T50** (LPT Outlet Temp) and **Ps30** (HPC Outlet Pressure).
 
-This shows the AI and standard RULs (Average cycles - cycles) and the AI is the most accurate one as it takes account of the sensor datas instead of the just the RULs and Cycles data from the test dataset which makes the output very accurate
+This shows the AI and standard RULs (Average cycles - cycles) and the AI is the most accurate one as it takes account of the sensor datas instead of the just the RULs and Cycles data from the test dataset which makes the output very accurate. (Read Working principle for the Judges.txt for the working principle)
   
 The project also includes a **Random Forest** implementation for comparison (RMSE 23.78), allowing users to benchmark the "Boosting" vs "Bagging" strategies directly.
 
